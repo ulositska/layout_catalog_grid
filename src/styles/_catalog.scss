@@ -1,22 +1,23 @@
 .catalog {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  gap: $catalog-gap;
+  justify-content: center;
+  grid-template-columns: repeat(1, $card-width);
 
-  max-width: 944px;
-  margin: 0 auto;
+  @each $width, $col-number in $breakpoints {
+    @media (min-width: $width) {
+      grid-template-columns: repeat($col-number, $card-width);
+    }
+  }
 
   &__card {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
+    width: $card-width;
     height: 300px;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 48px;
-  }
-
-  &__card:not(:nth-child(4n)) {
-    margin-right: 48px;
   }
 }
